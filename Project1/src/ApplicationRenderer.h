@@ -39,8 +39,10 @@ public:
 	void MouseCallBack(GLFWwindow* window, double xposIn, double yposIn);
 	void MouseScroll(GLFWwindow* window, double xoffset, double yoffset);
 	
-	void WindowInitialize(int width, int height,  std::string windowName ="Window");
+	void WindowInitialize(int width, int height,  std::string windowName ="AI Project 1");
 	
+	void GraphicsInitialize();
+
 	void Start();
 	void PreRender();
 	void Render();
