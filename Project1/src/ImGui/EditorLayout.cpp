@@ -53,6 +53,11 @@ void EditorLayout::SetSelectedObjectsEnable(bool isEnable)
     }
 }
 
+bool EditorLayout::IsViewPortHovered()
+{
+    return sceneViewportPanel->isHovered;
+}
+
 std::vector<Object*> EditorLayout::GetSelectedObjects()
 {
     return selectedObjectsList;

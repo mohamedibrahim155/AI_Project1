@@ -13,5 +13,7 @@ public:
 	ImVec2 viewportSize;
 
 	Camera* sceneViewportCamera;
+
+	bool isHovered = false;
 };
 

@@ -122,6 +122,20 @@ void Transform::SetOrientationFromDirections(glm::vec3 newUp, glm::vec3 newRight
     this->SetQuatRotation(rotationQuat);
 }
 
+void Transform::LookAt(const Transform& targetTransform)
+{
+    glm::vec3 targetPosition = targetTransform.position;
+
+   
+    glm::vec3 forward = glm::normalize(targetPosition - position);
+
+    
+    quaternionRotation = glm::quatLookAt(forward, GetUp());
+
+   
+    UpdateEulerFromQuaternion();
+}
+
 
 
 void Transform::UpdateQuaternionFromEuler()

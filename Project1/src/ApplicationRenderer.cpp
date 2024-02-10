@@ -145,7 +145,7 @@ void ApplicationRenderer::WindowInitialize(int width, int height,  std::string w
    // camera->SetProjection();
 
     camera->IntializeCamera();
-    camera->transform.position = glm::vec3(0, 0, - 1.0f);
+ //   camera->transform.position = glm::vec3(0, 0, - 1.0f);
 
     isImguiPanelsEnable = true;
 
@@ -167,6 +167,15 @@ void ApplicationRenderer::GraphicsInitialize()
 
 void ApplicationRenderer::Start()
 {
+    Model* PlayerBall = new Model(*DebugModels::GetInstance().defaultCube);
+    PlayerBall->transform.SetPosition(glm::vec3(0, 5, 5));
+    GraphicsRender::GetInstance().AddModelAndShader(PlayerBall, defaultShader);
+
+    thirdpersonCamera = new ThirdPersonCameraController();
+    thirdpersonCamera->IntializeCamera();
+    thirdpersonCamera->SetCamera(camera);
+    thirdpersonCamera->SetPlayer(&PlayerBall->transform);
+
 
      Light* directionLight = new Light();
      directionLight->Initialize(LightType::DIRECTION_LIGHT, 1);
@@ -178,6 +187,8 @@ void ApplicationRenderer::Start()
 
      directionLight->transform.SetRotation(glm::vec3(0, 0, 5));
      directionLight->transform.SetPosition(glm::vec3(0, 0, 5));
+    
+
     
 
      Model* roadFloor = new Model("Models/Road/Road_Crossroads_1.fbx");
@@ -262,12 +273,13 @@ void ApplicationRenderer::Render()
     {
 
         Time::GetInstance().SetCurrentTime(glfwGetTime());
+
        
       
         scrollTime += Time::GetInstance().deltaTime;
 
         ProcessInput(window);
-
+    
         // Imgui
 
         ImGui_ImplOpenGL3_NewFrame();
@@ -298,7 +310,6 @@ void ApplicationRenderer::Render()
 
          GraphicsRender::GetInstance().Draw();
          PostRender(); // Update Call AFTER  DRAW
-
         frameBuffer->Unbind();
 
          ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
@@ -354,7 +365,8 @@ void ApplicationRenderer::ProcessInput(GLFWwindow* window)
         camera->ProcessKeyboard(RIGHT, Time::GetInstance().deltaTime * cameraSpeed);
 
     }
-
+    
+   // InputManager::GetInstance().UpdateMousePosition(window);
 
 }
 
@@ -396,10 +408,6 @@ void ApplicationRenderer::ProcessInput(GLFWwindow* window)
     float xpos = static_cast<float>(xposIn);
         float ypos = static_cast<float>(yposIn);
      
-        if (firstMouse)
-        {
-
-        }
 
          if (firstMouse)
          {
@@ -414,10 +422,23 @@ void ApplicationRenderer::ProcessInput(GLFWwindow* window)
          lastX = xpos;
          lastY = ypos;
      
+         if (!EditorLayout::GetInstance().IsViewPortHovered())
+         {
+             return;
+         }
+         InputManager::GetInstance().OnMouseMove(window, xposIn, yposIn);
+
          if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS)
          {
-             camera->ProcessMouseMovement(xoffset, yoffset);
+             if (!isPlayMode)
+             {
+                 camera->ProcessMouseMovement(xoffset, yoffset);
+             }
+         
+            
          }
+        
+
  }
 
  void ApplicationRenderer::MouseScroll(GLFWwindow* window, double xoffset, double yoffset)

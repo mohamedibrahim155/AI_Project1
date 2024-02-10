@@ -35,6 +35,7 @@ public:
     void SetRight(glm::vec3 newRight);
     void SetForward(glm::vec3 newForward);
     void SetOrientationFromDirections(glm::vec3 newUp, glm::vec3 newRight);
+    void LookAt(const Transform& targetTransform);
 
     // Inherited via Object
     void DrawProperties() override;

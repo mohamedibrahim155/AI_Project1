@@ -1,5 +1,14 @@
 #include "EnemyObject.h"
 
+EnemyObject::EnemyObject()
+{
+	name = "Enemy";
+}
+
+EnemyObject::~EnemyObject()
+{
+}
+
 void EnemyObject::UpdateEnemy()
 {
 	switch (enemyType)

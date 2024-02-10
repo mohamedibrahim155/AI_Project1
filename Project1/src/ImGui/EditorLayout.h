@@ -21,6 +21,8 @@ public :
 	void SetSelectedObjects(std::vector<Object*> objects);
 	void SetSelectedObjectsEnable(bool isEnable);
 
+	bool IsViewPortHovered();
+
 	std::vector<Object*> GetSelectedObjects();
 	
 

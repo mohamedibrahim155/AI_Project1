@@ -141,6 +141,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Dependencies\glad\src\glad.c" />
+    <ClCompile Include="src\PlayerController\PlayerController.cpp" />
+    <ClCompile Include="src\InputManager.cpp" />
     <ClCompile Include="src\AI\EnemyObject.cpp" />
     <ClCompile Include="src\AI\BaseEnemy.cpp" />
     <ClCompile Include="src\DebugModels.cpp" />
@@ -189,9 +191,12 @@
     <ClCompile Include="src\UnLitMaterial.cpp" />
     <ClCompile Include="src\ImGui\WindowDockingPanel.cpp" />
     <ClCompile Include="src\ImGui\ToolPanel.cpp" />
+    <ClCompile Include="src\ThirdPersonCameraController.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\stb_image.h" />
+    <ClInclude Include="MouseInputManager.h" />
+    <ClInclude Include="src\PlayerController\PlayerController.h" />
     <ClInclude Include="src\AI\EnemyObject.h" />
     <ClInclude Include="src\AI\BaseEnemy.h" />
     <ClInclude Include="src\DebugModels.h" />
@@ -201,6 +206,7 @@
     <ClInclude Include="src\EntityManager\EntityManager.h" />
     <ClInclude Include="src\EntityManager\Entity.h" />
     <ClInclude Include="src\ImGui\ImGuiUtils.h" />
+    <ClInclude Include="src\InputManager.h" />
     <ClInclude Include="src\Object.h" />
     <ClInclude Include="src\ImGui\Heirachy.h" />
     <ClInclude Include="src\ImGui\BasePanel.h" />
@@ -246,6 +252,7 @@
     <ClInclude Include="src\UnLitMaterial.h" />
     <ClInclude Include="src\ImGui\WindowDockingPanel.h" />
     <ClInclude Include="src\ImGui\ToolPanel.h" />
+    <ClInclude Include="src\ThirdPersonCameraController.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\color.frag" />

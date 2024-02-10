@@ -26,7 +26,8 @@
 #include "DebugModels.h"
 
 #include "EntityManager/EntityManager.h"
-
+#include "InputManager.h"
+#include "ThirdPersonCameraController.h"
 
 class ApplicationRenderer
 {
@@ -55,6 +56,7 @@ public:
 	FrameBuffer* frameBuffer;
 	Camera* camera;
 	bool isPlayMode = false;
+	ThirdPersonCameraController* thirdpersonCamera;
 private:
 	GLFWwindow* window;
 	
