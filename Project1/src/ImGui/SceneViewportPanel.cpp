@@ -23,15 +23,11 @@ void SceneViewportPanel::OnRender(float windowWidth, float windowHeight)
     {
         viewportSize = viewPortPanelSize;
 
-        frameBuffer->Resize(viewportSize.x, viewportSize.y);
-        sceneViewportCamera->Resize(viewportSize.x, viewportSize.y);
+        frameBuffer->Resize((uint32_t)viewPortPanelSize.x, (uint32_t)viewPortPanelSize.y);
+        sceneViewportCamera->Resize(viewPortPanelSize.x, viewPortPanelSize.y);
     }
 
    // ImVec2 imageSize = ImVec2(windowWidth, windowHeight);
-
-
-
-
     ImGui::Image((void*)frameBuffer->GetColorAttachmentID(), viewportSize, ImVec2(0, 1), ImVec2(1, 0));
 
     ImGui::End();

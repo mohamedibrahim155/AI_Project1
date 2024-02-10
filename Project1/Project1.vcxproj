@@ -141,6 +141,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Dependencies\glad\src\glad.c" />
+    <ClCompile Include="src\AI\EnemyObject.cpp" />
+    <ClCompile Include="src\AI\BaseEnemy.cpp" />
     <ClCompile Include="src\DebugModels.cpp" />
     <ClCompile Include="src\FrameBuffer.cpp" />
     <ClCompile Include="src\ImGui\SceneViewportPanel.cpp" />
@@ -190,6 +192,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\stb_image.h" />
+    <ClInclude Include="src\AI\EnemyObject.h" />
+    <ClInclude Include="src\AI\BaseEnemy.h" />
     <ClInclude Include="src\DebugModels.h" />
     <ClInclude Include="src\FrameBuffer.h" />
     <ClInclude Include="src\ImGui\SceneViewportPanel.h" />
@@ -237,7 +241,7 @@
     <ClInclude Include="src\Vertex.h" />
     <ClInclude Include="src\VertexArray.h" />
     <ClInclude Include="src\VertexBuffer.h" />
-    <ClInclude Include="src\VertexBufferLayout.h" />
+    <ClInclude Include="src\AI\VertexBufferLayout.h" />
     <ClInclude Include="src\Time.h" />
     <ClInclude Include="src\UnLitMaterial.h" />
     <ClInclude Include="src\ImGui\WindowDockingPanel.h" />

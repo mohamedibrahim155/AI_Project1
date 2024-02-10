@@ -159,6 +159,12 @@
     <ClCompile Include="src\ImGui\ToolPanel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\AI\BaseEnemy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AI\EnemyObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Shader.h">
@@ -233,7 +239,7 @@
     <ClInclude Include="src\VertexBuffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\VertexBufferLayout.h">
+    <ClInclude Include="src\AI\VertexBufferLayout.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\IndexBuffer.h">
@@ -318,6 +324,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\ImGui\ToolPanel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AI\BaseEnemy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AI\EnemyObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

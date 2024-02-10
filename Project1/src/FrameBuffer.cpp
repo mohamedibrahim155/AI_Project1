@@ -75,7 +75,7 @@ void FrameBuffer::Invalidate()
 
 }
 
-void FrameBuffer::Resize(unsigned int width, unsigned int height)
+void FrameBuffer::Resize(uint32_t width, uint32_t height)
 {
 	this->specification.width = width;
 	this->specification.height = height;
