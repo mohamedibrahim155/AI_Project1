@@ -141,7 +141,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Dependencies\glad\src\glad.c" />
-    <ClCompile Include="src\PlayerController\PlayerController.cpp" />
+    <ClCompile Include="src\PlayerController.cpp" />
     <ClCompile Include="src\InputManager.cpp" />
     <ClCompile Include="src\AI\EnemyObject.cpp" />
     <ClCompile Include="src\AI\BaseEnemy.cpp" />
@@ -196,7 +196,7 @@
   <ItemGroup>
     <ClInclude Include="..\stb_image.h" />
     <ClInclude Include="MouseInputManager.h" />
-    <ClInclude Include="src\PlayerController\PlayerController.h" />
+    <ClInclude Include="src\PlayerController.h" />
     <ClInclude Include="src\AI\EnemyObject.h" />
     <ClInclude Include="src\AI\BaseEnemy.h" />
     <ClInclude Include="src\DebugModels.h" />

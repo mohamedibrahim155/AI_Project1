@@ -28,6 +28,7 @@
 #include "EntityManager/EntityManager.h"
 #include "InputManager.h"
 #include "ThirdPersonCameraController.h"
+#include "PlayerController.h"
 
 class ApplicationRenderer
 {
@@ -57,6 +58,7 @@ public:
 	Camera* camera;
 	bool isPlayMode = false;
 	ThirdPersonCameraController* thirdpersonCamera;
+	PlayerController* playerController;
 private:
 	GLFWwindow* window;
 	

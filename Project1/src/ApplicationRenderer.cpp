@@ -171,10 +171,16 @@ void ApplicationRenderer::Start()
     PlayerBall->transform.SetPosition(glm::vec3(0, 5, 5));
     GraphicsRender::GetInstance().AddModelAndShader(PlayerBall, defaultShader);
 
+
+
+
     thirdpersonCamera = new ThirdPersonCameraController();
     thirdpersonCamera->IntializeCamera();
     thirdpersonCamera->SetCamera(camera);
     thirdpersonCamera->SetPlayer(&PlayerBall->transform);
+
+    playerController = new PlayerController();
+   
 
 
      Light* directionLight = new Light();
@@ -346,6 +352,10 @@ void ApplicationRenderer::ProcessInput(GLFWwindow* window)
         glfwSetWindowShouldClose(window, true);
 
     float cameraSpeed=25;
+    if (isPlayMode)
+    {
+        return;
+    }
     if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
     {
         camera->ProcessKeyboard(FORWARD, Time::GetInstance().deltaTime * cameraSpeed);
@@ -398,6 +408,19 @@ void ApplicationRenderer::ProcessInput(GLFWwindow* window)
              GraphicsRender::GetInstance().selectedModel = listOfModels[selectedModelCount];
 
 
+         }
+
+         if (action == GLFW_PRESS)
+         {
+             playerController->OnKeyPressed(key);
+         }
+         else if (action == GLFW_RELEASE)
+         {
+             playerController->OnKeyReleased(key);
+         }
+         else if(action == GLFW_REPEAT)
+         {
+             playerController->OnKeyHold(key);
          }
      
  }
