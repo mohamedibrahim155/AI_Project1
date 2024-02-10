@@ -26,14 +26,17 @@ void EnemyObject::UpdateEnemy()
 
 void EnemyObject::SetEnemyPosition(const glm::vec3& translation)
 {
+	transform.SetPosition(translation);
 }
 
 void EnemyObject::SetEnemyScale(const glm::vec3& scaling)
 {
+	transform.SetScale(scaling);
 }
 
 void EnemyObject::SetEnemyRotation(const glm::vec3& axis)
 {
+	transform.SetRotation(axis);
 }
 
 void EnemyObject::DrawProperties()
@@ -43,6 +46,7 @@ void EnemyObject::DrawProperties()
 
 void EnemyObject::SceneDraw()
 {
+	Model::SceneDraw();
 }
 
 void EnemyObject::Start()

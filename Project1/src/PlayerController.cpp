@@ -15,7 +15,9 @@ PlayerController::~PlayerController()
 void PlayerController::InitializePlayer()
 {
 	LoadModel("Models/Player/Player.fbx");
+	//LoadModel("Models/Zombie/zombies.obj");
 
+	transform.SetPosition(glm::vec3(0, 1, 5));
 	transform.SetScale(glm::vec3(playerScale));
 	transform.SetRotation(glm::vec3(playerRotation));
 
@@ -53,19 +55,19 @@ void PlayerController::OnKeyPressed(int key)
 {
 	if (key == GLFW_KEY_W)
 	{
-		keyPressed.y = 1;
+		keyPressed.y = -1;
 	}
 	else if (key == GLFW_KEY_A)
 	{
-		keyPressed.x = 1;
+		keyPressed.x = -1;
 	}
 	else if (key == GLFW_KEY_S)
 	{
-		keyPressed.y = -1;
+		keyPressed.y = 1;
 	}
 	else if (key == GLFW_KEY_D)
 	{
-		keyPressed.x = -1;
+		keyPressed.x = 1;
 	}
 }
 
@@ -96,19 +98,19 @@ void PlayerController::OnKeyHold(int key)
 {
 	if (key == GLFW_KEY_W)
 	{
-		keyPressed.y = 1;
+		keyPressed.y = -1;
 	}
 	else if (key == GLFW_KEY_A)
 	{
-		keyPressed.x = 1;
+		keyPressed.x = -1;
 	}
 	else if (key == GLFW_KEY_S)
 	{
-		keyPressed.y = -1;
+		keyPressed.y = 1;
 	}
 	else if (key == GLFW_KEY_D)
 	{
-		keyPressed.x = -1;
+		keyPressed.x = 1;
 	}
 }
 

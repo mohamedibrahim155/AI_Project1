@@ -4,6 +4,13 @@ ThirdPersonCameraController::ThirdPersonCameraController()
 {
 	name = "Thirdperson Camera";
 	tag = "ThirdPersonCamera";
+	playerController = nullptr;
+}
+
+ThirdPersonCameraController::ThirdPersonCameraController(PlayerController* player) : playerController(player)
+{
+	name = "Thirdperson Camera";
+	tag = "ThirdPersonCamera";
 }
 
 ThirdPersonCameraController::~ThirdPersonCameraController()
@@ -12,7 +19,7 @@ ThirdPersonCameraController::~ThirdPersonCameraController()
 
 void ThirdPersonCameraController::SetPlayer(Transform* player)
 {
-	this->player = player;
+//	this->player = player;
 }
 
 void ThirdPersonCameraController::SetCamera(Camera* mainCamera)
@@ -90,6 +97,11 @@ void ThirdPersonCameraController::ProccessCameraMovement(float xoffset, float yo
 	//mainCamera->transform.SetRotation(mainCamera->transform.rotation);
 }
 
+void ThirdPersonCameraController::SetPlayerController(PlayerController* player)
+{
+	this->playerController = player;
+}
+
 void ThirdPersonCameraController::MouseInput()
 {
 	
@@ -123,7 +135,7 @@ void ThirdPersonCameraController::MouseInput()
 void ThirdPersonCameraController::CameraUpdate()
 {
 	
-	cameraOffsetPosition = player->position + cameraOffset;
+	cameraOffsetPosition = playerController->transform.position + cameraOffset;
 
 	cameraForward = GetCameraForward();
 

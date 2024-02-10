@@ -2,11 +2,13 @@
 #include "Camera.h"
 #include "EntityManager/Entity.h"
 #include "InputManager.h"
+#include "PlayerController.h"
 
 class ThirdPersonCameraController : public Entity
 {
 public:
 	ThirdPersonCameraController();
+	ThirdPersonCameraController(PlayerController* player);
 	~ThirdPersonCameraController();
 
 
@@ -30,6 +32,7 @@ public:
      void SceneDraw() override;
 
 	 void ProccessCameraMovement(float xoffset, float yoffset, GLboolean constrainPitch = true);
+	 void SetPlayerController(PlayerController* player);
 
 	 void MouseInput();
 	 void CameraUpdate();
@@ -38,8 +41,7 @@ public:
 
 private :
 	Camera* mainCamera = nullptr;
-
-	 Transform* player = nullptr;
+	 PlayerController* playerController = nullptr;
 
 	 float rotaionSpeed =5;
 	 float pitch = 0;

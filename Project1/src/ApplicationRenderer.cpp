@@ -174,12 +174,12 @@ void ApplicationRenderer::Start()
 
 
 
-    thirdpersonCamera = new ThirdPersonCameraController();
-    thirdpersonCamera->IntializeCamera();
-    thirdpersonCamera->SetCamera(camera);
-    thirdpersonCamera->SetPlayer(&PlayerBall->transform);
 
     playerController = new PlayerController();
+    thirdpersonCamera = new ThirdPersonCameraController(playerController);
+    thirdpersonCamera->IntializeCamera();
+    thirdpersonCamera->SetCamera(camera);
+ //   thirdpersonCamera->SetPlayer(&PlayerBall->transform);
    
 
 
@@ -191,7 +191,7 @@ void ApplicationRenderer::Start()
      directionLight->SetAttenuation(1, 1, 0.01f);
      directionLight->SetInnerAndOuterCutoffAngle(11, 12);
 
-     directionLight->transform.SetRotation(glm::vec3(0, 0, 5));
+     directionLight->transform.SetRotation(glm::vec3(-24.5f, -24, 5));
      directionLight->transform.SetPosition(glm::vec3(0, 0, 5));
     
 
@@ -199,6 +199,11 @@ void ApplicationRenderer::Start()
 
      Model* roadFloor = new Model("Models/Road/Road_Crossroads_1.fbx");
      roadFloor->transform.SetPosition(glm::vec3(0, -2.60f, 0));
+     roadFloor->transform.SetScale(glm::vec3(2));
+
+     Model* bus = new Model("Models/Zombie/zombies.obj");
+     GraphicsRender::GetInstance().AddModelAndShader(bus, defaultShader);
+     bus->transform.LookAt(playerController->transform);
 
      GraphicsRender::GetInstance().AddModelAndShader(roadFloor, defaultShader);
 

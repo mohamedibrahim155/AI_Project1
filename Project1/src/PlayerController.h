@@ -30,8 +30,8 @@ private:
     float deltaTime = 0;
 
     glm::vec2 keyPressed = glm::vec2(0);
-    glm::vec3 playerRotation = glm::vec3(-90,0,0);
-    float playerScale = 0.5f;
+    glm::vec3 playerRotation = glm::vec3(0,90,0);
+    float playerScale = 0.25f;
 
 };
 
