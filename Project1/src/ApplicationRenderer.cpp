@@ -167,20 +167,27 @@ void ApplicationRenderer::GraphicsInitialize()
 
 void ApplicationRenderer::Start()
 {
-    Model* PlayerBall = new Model(*DebugModels::GetInstance().defaultCube);
-    PlayerBall->transform.SetPosition(glm::vec3(0, 5, 5));
-    GraphicsRender::GetInstance().AddModelAndShader(PlayerBall, defaultShader);
+   // Model* PlayerBall = new Model(*DebugModels::GetInstance().defaultCube);
+   // PlayerBall->transform.SetPosition(glm::vec3(0, 5, 5));
+   // GraphicsRender::GetInstance().AddModelAndShader(PlayerBall, defaultShader);
 
 
 
 
 
     playerController = new PlayerController();
+    playerController->SetCamera(camera);
+
     thirdpersonCamera = new ThirdPersonCameraController(playerController);
     thirdpersonCamera->IntializeCamera();
     thirdpersonCamera->SetCamera(camera);
  //   thirdpersonCamera->SetPlayer(&PlayerBall->transform);
    
+    EnemyObject* enemy1 = new EnemyObject();
+    enemy1->name = "Enemy 1";
+    enemy1->SetEnemyState(EnemyBehaviourType::APPROACH);
+    enemy1->SetEnemyPosition(glm::vec3(0, 0, -8));
+    enemy1->SetTarget(&playerController->transform);
 
 
      Light* directionLight = new Light();
@@ -198,14 +205,14 @@ void ApplicationRenderer::Start()
     
 
      Model* roadFloor = new Model("Models/Road/Road_Crossroads_1.fbx");
-     roadFloor->transform.SetPosition(glm::vec3(0, -2.60f, 0));
+    // roadFloor->transform.SetPosition(glm::vec3(0, -2.60f, 0));
      roadFloor->transform.SetScale(glm::vec3(2));
-
-     Model* bus = new Model("Models/Zombie/zombies.obj");
-     GraphicsRender::GetInstance().AddModelAndShader(bus, defaultShader);
-     bus->transform.LookAt(playerController->transform);
-
      GraphicsRender::GetInstance().AddModelAndShader(roadFloor, defaultShader);
+
+   // Model* bus = new Model("Models/Zombie/zombies.obj");
+   // GraphicsRender::GetInstance().AddModelAndShader(bus, defaultShader);
+   // bus->transform.LookAt(playerController->transform);
+
 
 
 }

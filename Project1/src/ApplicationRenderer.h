@@ -29,6 +29,7 @@
 #include "InputManager.h"
 #include "ThirdPersonCameraController.h"
 #include "PlayerController.h"
+#include "AI/EnemyObject.h"
 
 class ApplicationRenderer
 {

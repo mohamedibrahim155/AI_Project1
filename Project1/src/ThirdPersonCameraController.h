@@ -43,7 +43,7 @@ private :
 	Camera* mainCamera = nullptr;
 	 PlayerController* playerController = nullptr;
 
-	 float rotaionSpeed =5;
+	 float rotaionSpeed =30;
 	 float pitch = 0;
 	 float yaw = -90;
 	 float maxPitchvalue = 70;

@@ -2,9 +2,12 @@
 #include "glm/glm.hpp"
 enum EnemyBehaviourType
 {
-	NONE =0,
-	FLEE =1,
-	SEEK =2
+	NONE = 0,
+	FLEE = 1,
+	SEEK = 2,
+	PURSUE = 3,
+	EVADE = 4,
+	APPROACH = 5, 
 };
 
 class BaseEnemy 
@@ -12,7 +15,7 @@ class BaseEnemy
 	
 public :
 
-	EnemyBehaviourType enemyType;
+	EnemyBehaviourType enemyType = EnemyBehaviourType::NONE;
 
 	virtual void UpdateEnemy() =0;
 

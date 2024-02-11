@@ -1,6 +1,9 @@
 #pragma once
 #include "BaseEnemy.h"
 #include "../model.h"
+
+class GraphicsRender;
+
 class EnemyObject : public BaseEnemy, public Model
 {
 	
@@ -25,9 +28,50 @@ public:
 	 void Update(float deltaTime) override;
 	 void OnDestroy() override;
 
-	 void Seek();
 	 void SetTarget(Transform* transform);
 
-	 Transform* target;
+	 void SetEnemyState(const EnemyBehaviourType& enemyType);
+
+
+	 float speed = 2.0f;
+private:
+
+
+	void Seek();
+	
+
+	float deltaTime;
+	const float enemyScaleValue = 0.25f;
+	glm::vec3  direction;
+	float currentDistance = 0;
+	Transform* target;
+
+	void Flee();
+
+	float fleeStopDistance = 15;
+	float fleeStartDistance = 5;
+	float runSpeed = 8;
+	
+	bool isFleeing = false;
+
+
+	void Pursue();
+
+	float predictionTime = 5;
+	
+
+	void Evade();
+	void EvadeMovement();
+	float evadeDistance = 10;
+	bool isEvading = false;
+
+	void Approach();
+
+	float slowingDistance = 7;
+	float approachDistance = 6;
+
+
+
+
 };
 

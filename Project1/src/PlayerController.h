@@ -3,6 +3,7 @@
 #include "model.h"
 
 class GraphicsRender;
+class Camera;
 
 class PlayerController : public Model
 {
@@ -23,6 +24,12 @@ public:
      void OnKeyHold(int key);
 
      void MovePlayer(glm::vec3 movement);
+     void SetCamera(Camera* camera);
+
+     void UpdateMouseAxis();
+
+
+     Camera* mainCamera;
 
 private:
 
@@ -32,6 +39,18 @@ private:
     glm::vec2 keyPressed = glm::vec2(0);
     glm::vec3 playerRotation = glm::vec3(0,90,0);
     float playerScale = 0.25f;
+
+    glm::vec2 mouseDirection;
+
+
+    bool isUpPressed = false;
+    bool isDownPressed =false;
+    bool isLeftPressed =false;
+    bool isRightPressed =false;
+
+    float xMouseAxis = 0;
+    float yMouseAxis = 0;
+
 
 };
 
