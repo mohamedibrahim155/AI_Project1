@@ -264,33 +264,6 @@ void EnemyObject::Approach()
 
 }
 
-void EnemyObject::Approach2()
-{
-	direction = target->position - transform.position;
-
-	currentDistance = glm::length(direction);
-
-	if (currentDistance != 0)
-	{
-		direction = glm::normalize(direction);
-	}
-
-
-	if (currentDistance <= approachDistance + 0.1f && currentDistance >= approachDistance - 0.1f)
-	{
-		approachTowards = true;
-	}
-
-	glm::quat rotationQuat = glm::quatLookAt(direction * (approachTowards ? -1.0f : 1.0f), glm::vec3(0, 1, 0));
-	transform.SetQuatRotation(rotationQuat);
-
-
-
-	approachTowards = currentDistance > approachDistance;
-
-	transform.position += direction * (approachTowards ? 1.0f : -1.0f) * speed * deltaTime;
-
-}
 
 void EnemyObject::SetTarget(Transform* transform)
 {
