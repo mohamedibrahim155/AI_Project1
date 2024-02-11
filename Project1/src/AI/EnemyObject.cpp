@@ -73,10 +73,15 @@ void EnemyObject::DrawProperties()
 
 	ImGui::Checkbox("Enable Enemy", &isVisible);
 
+	ImGui::PushItemWidth(100.0f); // Adjust the width as needed
+	ImGui::InputFloat("Speed", &speed);
+	ImGui::PopItemWidth();
+
 	const char* enemyTypeOptions[] = { "NONE", "FLEE", "SEEK", "PURSUE", "EVADE", "APPROACH" };
 	ImGui::ColorButton("COLOR", ImVec4(currentColor.r, currentColor.b, currentColor.g, currentColor.w));
+	ImGui::PushItemWidth(175.0f);
 	ImGui::Combo("Enemy State", reinterpret_cast<int*>(&enemyType), enemyTypeOptions, IM_ARRAYSIZE(enemyTypeOptions));
-
+	ImGui::PopItemWidth();
 	ImGui::TreePop();
 
 	
