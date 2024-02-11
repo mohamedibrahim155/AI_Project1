@@ -19,6 +19,7 @@ void EnemyObject::UpdateEnemy()
 {
 	if (target == nullptr) return;
 
+	if (!isVisible) return;
 	switch (enemyType)
 	{
 	case NONE:
@@ -70,8 +71,10 @@ void EnemyObject::DrawProperties()
 		return;
 	}
 
+	ImGui::Checkbox("Enable Enemy", &isVisible);
+
 	const char* enemyTypeOptions[] = { "NONE", "FLEE", "SEEK", "PURSUE", "EVADE", "APPROACH" };
-	
+	ImGui::ColorButton("COLOR", ImVec4(currentColor.r, currentColor.b, currentColor.g, currentColor.w));
 	ImGui::Combo("Enemy State", reinterpret_cast<int*>(&enemyType), enemyTypeOptions, IM_ARRAYSIZE(enemyTypeOptions));
 
 	ImGui::TreePop();
@@ -277,10 +280,11 @@ void EnemyObject::SetEnemyState(const EnemyBehaviourType& enemyType)
 
 void EnemyObject::SetColor(const EnemyBehaviourType& enemyType)
 {
+	currentColor = enemyStateColors[(int)enemyType];
 
 	for (size_t i = 0; i < meshes.size(); i++)
 	{
-		meshes[i]->meshMaterial->material()->SetBaseColor(enemyStateColors[(int)enemyType]);
+		meshes[i]->meshMaterial->material()->SetBaseColor(currentColor);
 	}
 
 }

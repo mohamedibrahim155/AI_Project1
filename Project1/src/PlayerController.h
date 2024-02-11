@@ -33,7 +33,7 @@ public:
 
 private:
 
-    float moveSpeed = 10;
+    float moveSpeed = 15;
     float deltaTime = 0;
 
     glm::vec2 keyPressed = glm::vec2(0);

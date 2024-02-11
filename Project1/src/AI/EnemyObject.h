@@ -33,7 +33,7 @@ public:
 	 void SetEnemyState(const EnemyBehaviourType& enemyType);
 	 void SetColor(const EnemyBehaviourType& enemyType);
 
-	 float speed = 2.0f;
+	 float speed = 5;
 private:
 
 	void Seek();
@@ -55,16 +55,16 @@ private:
 	const float enemyScaleValue = 0.25f;
 	float deltaTime;
 	float currentDistance = 0;
-	float fleeStopDistance = 15;
+	float fleeStopDistance = 25;
 	float fleeStartDistance = 5;
-	float runSpeed = 8;
+	float runSpeed = 15;
 	float predictionTime = 5;
-	float evadeDistance = 10;
+	float evadeDistance = 15;
 	float slowingDistance = 6;
 	float approachDistance = 6;
 
 	glm::vec3  direction;
-	glm::vec3 currentColor;
+	glm::vec4 currentColor;
 
 	glm::vec4 enemyStateColors[6] =
 	{   glm::vec4(1,1,1,1),  //None

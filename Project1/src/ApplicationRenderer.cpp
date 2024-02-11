@@ -188,14 +188,15 @@ void ApplicationRenderer::Start()
 
      directionLight->transform.SetRotation(glm::vec3(-24.5f, -24, 5));
      directionLight->transform.SetPosition(glm::vec3(0, 0, 5));
-    
+     directionLight->isVisible = false;
 
     
 
      Model* roadFloor = new Model("Models/Road/Road_Crossroads_1.fbx");
     // roadFloor->transform.SetPosition(glm::vec3(0, -2.60f, 0));
-     roadFloor->transform.SetScale(glm::vec3(2));
-     roadFloor->meshes[0]->meshMaterial->material()->SetBaseColor(glm::vec4(0.5f, 0.5f, 0.5f, 1));
+     roadFloor->transform.SetScale(glm::vec3(5));
+     roadFloor->name = "Floor";
+     roadFloor->meshes[0]->meshMaterial->material()->SetBaseColor(glm::vec4(0.5f, 0.75f, 0.5f, 1));
      GraphicsRender::GetInstance().AddModelAndShader(roadFloor, defaultShader);
 
    // Model* bus = new Model("Models/Zombie/zombies.obj");
@@ -218,9 +219,42 @@ void ApplicationRenderer::GameComponents()
 
     EnemyObject* enemy1 = new EnemyObject();
     enemy1->name = "Enemy 1";
-    enemy1->SetEnemyState(EnemyBehaviourType::EVADE);
-    enemy1->SetEnemyPosition(glm::vec3(0, 0, -8));
+    enemy1->SetEnemyState(EnemyBehaviourType::NONE);
+    enemy1->SetEnemyPosition(glm::vec3(11.90, 0, 0));
     enemy1->SetTarget(&playerController->transform);
+
+    EnemyObject* enemy2 = new EnemyObject();
+    enemy2->name = "Enemy 2";
+    enemy2->SetEnemyState(EnemyBehaviourType::FLEE);
+    enemy2->SetEnemyPosition(glm::vec3(5.80f, 0, -8));
+    enemy2->SetTarget(&playerController->transform);
+
+    EnemyObject* enemy3 = new EnemyObject();
+    enemy3->name = "Enemy 3";
+    enemy3->SetEnemyState(EnemyBehaviourType::SEEK);
+    enemy3->SetEnemyPosition(glm::vec3(-32.0f, 0, -8));
+    enemy3->SetTarget(&playerController->transform);
+
+
+    EnemyObject* enemy4 = new EnemyObject();
+    enemy4->name = "Enemy 4";
+    enemy4->SetEnemyState(EnemyBehaviourType::PURSUE);
+    enemy4->SetEnemyPosition(glm::vec3(-6.20f, 0, -8));
+    enemy4->SetTarget(&playerController->transform);
+
+
+    EnemyObject* enemy5 = new EnemyObject();
+    enemy5->name = "Enemy 5";
+    enemy5->SetEnemyState(EnemyBehaviourType::EVADE);
+    enemy5->SetEnemyPosition(glm::vec3(31.90f, 0, -8));
+    enemy5->SetTarget(&playerController->transform);
+
+
+    EnemyObject* enemy6 = new EnemyObject();
+    enemy6->name = "Enemy 6";
+    enemy6->SetEnemyState(EnemyBehaviourType::APPROACH);
+    enemy6->SetEnemyPosition(glm::vec3(-18.90f, 0, -8));
+    enemy6->SetTarget(&playerController->transform);
 }
 
 void ApplicationRenderer::PreRender()

@@ -27,6 +27,16 @@ void PlayerController::InitializePlayer()
 void PlayerController::DrawProperties()
 {
 	Model::DrawProperties();
+
+	ImGui::NewLine();
+	if (!ImGui::TreeNodeEx("Player Properties", ImGuiTreeNodeFlags_DefaultOpen))
+	{
+		return;
+	}
+
+	ImGui::InputFloat("Player Speed", &moveSpeed);
+
+	ImGui::TreePop();
 }
 
 void PlayerController::SceneDraw()
