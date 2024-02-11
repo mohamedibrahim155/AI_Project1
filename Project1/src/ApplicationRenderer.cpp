@@ -173,21 +173,9 @@ void ApplicationRenderer::Start()
 
 
 
+    GameComponents();
 
-
-    playerController = new PlayerController();
-    playerController->SetCamera(camera);
-
-    thirdpersonCamera = new ThirdPersonCameraController(playerController);
-    thirdpersonCamera->IntializeCamera();
-    thirdpersonCamera->SetCamera(camera);
- //   thirdpersonCamera->SetPlayer(&PlayerBall->transform);
    
-    EnemyObject* enemy1 = new EnemyObject();
-    enemy1->name = "Enemy 1";
-    enemy1->SetEnemyState(EnemyBehaviourType::APPROACH);
-    enemy1->SetEnemyPosition(glm::vec3(0, 0, -8));
-    enemy1->SetTarget(&playerController->transform);
 
 
      Light* directionLight = new Light();
@@ -207,6 +195,7 @@ void ApplicationRenderer::Start()
      Model* roadFloor = new Model("Models/Road/Road_Crossroads_1.fbx");
     // roadFloor->transform.SetPosition(glm::vec3(0, -2.60f, 0));
      roadFloor->transform.SetScale(glm::vec3(2));
+     roadFloor->meshes[0]->meshMaterial->material()->SetBaseColor(glm::vec4(0.5f, 0.5f, 0.5f, 1));
      GraphicsRender::GetInstance().AddModelAndShader(roadFloor, defaultShader);
 
    // Model* bus = new Model("Models/Zombie/zombies.obj");
@@ -215,6 +204,23 @@ void ApplicationRenderer::Start()
 
 
 
+}
+
+void ApplicationRenderer::GameComponents()
+{
+    playerController = new PlayerController();
+    playerController->SetCamera(camera);
+
+    thirdpersonCamera = new ThirdPersonCameraController(playerController);
+    thirdpersonCamera->IntializeCamera();
+    thirdpersonCamera->SetCamera(camera);
+    //   thirdpersonCamera->SetPlayer(&PlayerBall->transform);
+
+    EnemyObject* enemy1 = new EnemyObject();
+    enemy1->name = "Enemy 1";
+    enemy1->SetEnemyState(EnemyBehaviourType::EVADE);
+    enemy1->SetEnemyPosition(glm::vec3(0, 0, -8));
+    enemy1->SetTarget(&playerController->transform);
 }
 
 void ApplicationRenderer::PreRender()

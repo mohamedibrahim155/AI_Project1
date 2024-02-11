@@ -15,14 +15,12 @@ PlayerController::~PlayerController()
 
 void PlayerController::InitializePlayer()
 {
-	//LoadModel("Models/Player/Player.fbx");
 	LoadModel("Models/Player/Player1.ply");
-	//LoadModel("Models/Zombie/zombies.obj");
-
+	
 	transform.SetPosition(glm::vec3(0, 0, 5));
 	transform.SetScale(glm::vec3(playerScale));
-	//transform.SetRotation(glm::vec3(playerRotation));
-
+	
+	meshes[0]->meshMaterial->material()->SetBaseColor(glm::vec4(0.75f, 0.25f, 0, 1));
 	GraphicsRender::GetInstance().AddModelAndShader(this, GraphicsRender::GetInstance().defaultShader);
 }
 

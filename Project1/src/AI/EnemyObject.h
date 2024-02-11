@@ -31,46 +31,49 @@ public:
 	 void SetTarget(Transform* transform);
 
 	 void SetEnemyState(const EnemyBehaviourType& enemyType);
-
+	 void SetColor(const EnemyBehaviourType& enemyType);
 
 	 float speed = 2.0f;
 private:
 
-
 	void Seek();
-	
-
-	float deltaTime;
-	const float enemyScaleValue = 0.25f;
-	glm::vec3  direction;
-	float currentDistance = 0;
-	Transform* target;
-
 	void Flee();
-
-	float fleeStopDistance = 15;
-	float fleeStartDistance = 5;
-	float runSpeed = 8;
 	
-	bool isFleeing = false;
-
-
 	void Pursue();
-
-	float predictionTime = 5;
-	
+	void PursueRotation();
 
 	void Evade();
 	void EvadeMovement();
-	float evadeDistance = 10;
-	bool isEvading = false;
 
 	void Approach();
 
-	float slowingDistance = 7;
+	Transform* target;
+
+	bool isFleeing = false;
+	bool isEvading = false;
+
+	const float enemyScaleValue = 0.25f;
+	float deltaTime;
+	float currentDistance = 0;
+	float fleeStopDistance = 15;
+	float fleeStartDistance = 5;
+	float runSpeed = 8;
+	float predictionTime = 5;
+	float evadeDistance = 10;
+	float slowingDistance = 6;
 	float approachDistance = 6;
 
+	glm::vec3  direction;
+	glm::vec3 currentColor;
 
+	glm::vec4 enemyStateColors[6] =
+	{   glm::vec4(1,1,1,1),  //None
+		glm::vec4(1,0,0,1),  // SEEK
+		glm::vec4(0,1,0,1),  // FLEE
+		glm::vec4(0,0,1,1),  // PURSUE
+		glm::vec4(1,0,1,1),  // EVADE
+		glm::vec4(1,1,0,1),  // APROACH
+	};
 
 
 };

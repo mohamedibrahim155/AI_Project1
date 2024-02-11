@@ -37,10 +37,12 @@ void EnemyObject::UpdateEnemy()
 		break;
 	case APPROACH:
 		Approach();
+		//Approach2();
 		break;
 	default:
 		break;
 	}
+	SetColor(enemyType);
 }
 
 void EnemyObject::SetEnemyPosition(const glm::vec3& translation)
@@ -62,26 +64,19 @@ void EnemyObject::DrawProperties()
 {
 	Model::DrawProperties();
 
-	//ImGui::Columns(2);
+	ImGui::NewLine();
+	if (!ImGui::TreeNodeEx("Enemy Properties", ImGuiTreeNodeFlags_DefaultOpen))
+	{
+		return;
+	}
+
+	const char* enemyTypeOptions[] = { "NONE", "FLEE", "SEEK", "PURSUE", "EVADE", "APPROACH" };
 	
-	//ImGui::Text("isFlee state");
-	//ImGui::NextColumn();
+	ImGui::Combo("Enemy State", reinterpret_cast<int*>(&enemyType), enemyTypeOptions, IM_ARRAYSIZE(enemyTypeOptions));
 
-	ImGui::Columns(2);
-	ImGui::Spacing();
-	ImGui::SetColumnWidth(0, 150);
-	ImGui::Checkbox("Is Flee", &isFleeing);
-	ImGui::NextColumn();
+	ImGui::TreePop();
 
-
-	ImGui::Columns(3);
-	ImGui::SetColumnWidth(0, 150);
-	ImGui::InputFloat("Current Distance", &currentDistance);
-	ImGui::NextColumn();
-
-	ImGui::Columns(3);
-
-
+	
 }
 
 void EnemyObject::SceneDraw()
@@ -165,7 +160,7 @@ void EnemyObject::Flee()
 void EnemyObject::Pursue()
 {
 	
-	glm::vec3 predictedTarget = target->position + target->GetForward() * predictionTime;
+	glm::vec3 predictedTarget = target->position -  target->GetForward() * predictionTime;
 
 	direction = (predictedTarget - transform.position);
 
@@ -176,13 +171,18 @@ void EnemyObject::Pursue()
 		direction = glm::normalize(direction);
 	}
 
+	PursueRotation();
+
+	transform.position += direction * speed * deltaTime;
+}
+
+void EnemyObject::PursueRotation()
+{
 	if (currentDistance <= 1) return;
 
 	glm::quat rotationQuat = glm::quatLookAt(-direction, glm::vec3(0, 1, 0));
 
 	transform.SetQuatRotation(rotationQuat);
-
-	transform.position += direction * speed * deltaTime;
 }
 
 void EnemyObject::Evade()
@@ -248,7 +248,7 @@ void EnemyObject::Approach()
 		// Gradually reduce speed as it approaches the target
 		adjustedSpeed *= glm::max(0.0f, currentDistance / slowingDistance);
 	}
-	if (currentDistance<=1)
+	if (currentDistance<=3)
 	{
 		return;
 	}
@@ -264,6 +264,34 @@ void EnemyObject::Approach()
 
 }
 
+void EnemyObject::Approach2()
+{
+	direction = target->position - transform.position;
+
+	currentDistance = glm::length(direction);
+
+	if (currentDistance != 0)
+	{
+		direction = glm::normalize(direction);
+	}
+
+
+	if (currentDistance <= approachDistance + 0.1f && currentDistance >= approachDistance - 0.1f)
+	{
+		approachTowards = true;
+	}
+
+	glm::quat rotationQuat = glm::quatLookAt(direction * (approachTowards ? -1.0f : 1.0f), glm::vec3(0, 1, 0));
+	transform.SetQuatRotation(rotationQuat);
+
+
+
+	approachTowards = currentDistance > approachDistance;
+
+	transform.position += direction * (approachTowards ? 1.0f : -1.0f) * speed * deltaTime;
+
+}
+
 void EnemyObject::SetTarget(Transform* transform)
 {
 	target = transform;
@@ -272,4 +300,14 @@ void EnemyObject::SetTarget(Transform* transform)
 void EnemyObject::SetEnemyState(const EnemyBehaviourType& enemyType)
 {
 	this->enemyType = enemyType;
+}
+
+void EnemyObject::SetColor(const EnemyBehaviourType& enemyType)
+{
+
+	for (size_t i = 0; i < meshes.size(); i++)
+	{
+		meshes[i]->meshMaterial->material()->SetBaseColor(enemyStateColors[(int)enemyType]);
+	}
+
 }

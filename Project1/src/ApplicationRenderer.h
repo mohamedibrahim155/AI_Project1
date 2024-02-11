@@ -47,6 +47,7 @@ public:
 	void GraphicsInitialize();
 
 	void Start();
+	void GameComponents();
 	void PreRender();
 	void Render();
 	void PostRender();
